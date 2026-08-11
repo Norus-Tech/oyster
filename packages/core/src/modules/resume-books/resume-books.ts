@@ -125,7 +125,7 @@ export async function listResumeBookSponsors({
 }: ListResumeBookSponsorsOptions) {
   const sponsors = await db
     .selectFrom('resumeBookSponsors')
-    .leftJoin('companies', 'companies.id', 'resumeBookSponsors.companyId')
+    .innerJoin('companies', 'companies.id', 'resumeBookSponsors.companyId')
     .select([
       'companies.domain',
       'companies.id',
@@ -288,7 +288,7 @@ export async function updateCompanyResumeBookSponsorships({
     return !currentIds.has(resumeBookId);
   });
 
-  const toRemove = [...currentIds].filter((resumeBookId) => {
+  const toRemove = Array.from(currentIds).filter((resumeBookId) => {
     return !desiredIds.has(resumeBookId);
   });
 
@@ -343,7 +343,7 @@ export async function updateResumeBookSponsors({
     return !currentIds.has(companyId);
   });
 
-  const toRemove = [...currentIds].filter((companyId) => {
+  const toRemove = Array.from(currentIds).filter((companyId) => {
     return !desiredIds.has(companyId);
   });
 
