@@ -1,11 +1,11 @@
 import { db } from '@oyster/db';
 
+import { isApifyConfigured } from '@/modules/apify';
 import { type UpdateCompanyInput } from '@/modules/employment/employment.types';
 import {
   fetchCompanyFromLinkedIn,
   getDomainFromCompanyWebsite,
 } from '@/modules/employment/use-cases/fetch-company-from-linkedin';
-import { isApifyConfigured } from '@/modules/apify';
 import { fail, success } from '@/shared/utils/core';
 
 export async function updateCompany({

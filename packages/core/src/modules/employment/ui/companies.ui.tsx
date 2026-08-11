@@ -111,7 +111,7 @@ export function CompanyImageUrlField({
 }: Omit<FieldProps<string>, 'name'>) {
   return (
     <Field
-      description='Public image URL for the company logo. Example: a LinkedIn or Crunchbase CDN URL.'
+      description="Public image URL for the company logo. Example: a LinkedIn or Crunchbase CDN URL."
       error={error}
       label="Logo URL"
       labelFor={keys.imageUrl}

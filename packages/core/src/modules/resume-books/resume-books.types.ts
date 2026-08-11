@@ -148,7 +148,9 @@ export const RemoveResumeBookSponsorInput = AddResumeBookSponsorInput;
 export type CreateResumeBookInput = z.infer<typeof CreateResumeBookInput>;
 export type SubmitResumeInput = z.infer<typeof SubmitResumeInput>;
 export type UpdateResumeBookInput = z.infer<typeof UpdateResumeBookInput>;
-export type AddResumeBookSponsorInput = z.infer<typeof AddResumeBookSponsorInput>;
+export type AddResumeBookSponsorInput = z.infer<
+  typeof AddResumeBookSponsorInput
+>;
 export type RemoveResumeBookSponsorInput = z.infer<
   typeof RemoveResumeBookSponsorInput
 >;

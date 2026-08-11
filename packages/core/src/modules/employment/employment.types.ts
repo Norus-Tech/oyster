@@ -10,8 +10,8 @@ import {
   Student,
 } from '@oyster/types';
 
-import { ListSearchParams } from '@/shared/types';
 import { parseLinkedInCompanySlug } from '@/modules/employment/use-cases/fetch-company-from-linkedin';
+import { ListSearchParams } from '@/shared/types';
 
 // Enums
 
@@ -146,11 +146,7 @@ export type EditCompanyReviewInput = z.infer<typeof EditCompanyReviewInput>;
 export type UpvoteCompanyReviewInput = z.infer<typeof UpvoteCompanyReviewInput>;
 
 export const CreateCompanyInput = z.object({
-  linkedinSlug: z
-    .string()
-    .trim()
-    .min(1)
-    .transform(parseLinkedInCompanySlug),
+  linkedinSlug: z.string().trim().min(1).transform(parseLinkedInCompanySlug),
 });
 
 export const UpdateCompanyInput = z.object({

@@ -20,12 +20,12 @@ import {
   uploadFileToGoogleDrive,
 } from '@/modules/google-drive';
 import {
+  type AddResumeBookSponsorInput,
   type CreateResumeBookInput,
+  type RemoveResumeBookSponsorInput,
   RESUME_BOOK_CODING_LANGUAGES,
   RESUME_BOOK_JOB_SEARCH_STATUSES,
   RESUME_BOOK_ROLES,
-  type AddResumeBookSponsorInput,
-  type RemoveResumeBookSponsorInput,
   type SubmitResumeInput,
   type UpdateResumeBookInput,
 } from '@/modules/resume-books/resume-books.types';
@@ -682,11 +682,7 @@ export async function deleteResumeBook(id: string) {
         return eb
           .selectFrom('resumeBookSubmissions')
           .select((eb) => eb.fn.countAll<string>().as('count'))
-          .whereRef(
-            'resumeBookSubmissions.resumeBookId',
-            '=',
-            'resumeBooks.id'
-          )
+          .whereRef('resumeBookSubmissions.resumeBookId', '=', 'resumeBooks.id')
           .as('submissions');
       },
     ])

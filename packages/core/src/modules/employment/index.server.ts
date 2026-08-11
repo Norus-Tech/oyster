@@ -9,6 +9,9 @@ export { addCompanyReview } from './use-cases/add-company-review';
 export { createCompany } from './use-cases/create-company';
 export { deleteCompany } from './use-cases/delete-company';
 export { editCompanyReview } from './use-cases/edit-company-review';
-export { updateCompany, syncCompanyFromLinkedIn } from './use-cases/update-company';
+export {
+  updateCompany,
+  syncCompanyFromLinkedIn,
+} from './use-cases/update-company';
 export { undoUpvoteCompanyReview } from './use-cases/undo-upvote-company-review';
 export { upvoteCompanyReview } from './use-cases/upvote-company-review';

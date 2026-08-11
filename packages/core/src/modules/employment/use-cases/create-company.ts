@@ -1,13 +1,13 @@
 import { db } from '@oyster/db';
 import { id } from '@oyster/utils';
 
+import { isApifyConfigured } from '@/modules/apify';
 import { type AdminCreateCompanyInput } from '@/modules/employment/employment.types';
 import {
   fetchCompanyFromLinkedIn,
   getDomainFromCompanyWebsite,
 } from '@/modules/employment/use-cases/fetch-company-from-linkedin';
-import { isApifyConfigured } from '@/modules/apify';
-import { fail, success, type Result } from '@/shared/utils/core';
+import { fail, type Result, success } from '@/shared/utils/core';
 
 export async function createCompany({
   domain,
