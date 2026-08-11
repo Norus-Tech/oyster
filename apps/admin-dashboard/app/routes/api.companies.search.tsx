@@ -19,7 +19,12 @@ export async function loader({ request }: LoaderFunctionArgs) {
       limit: 50,
       page: 1,
     },
-    select: ['companies.domain', 'companies.id', 'companies.imageUrl', 'companies.name'],
+    select: [
+      'companies.domain',
+      'companies.id',
+      'companies.imageUrl',
+      'companies.name',
+    ],
     where: { search },
   });
 

@@ -51,7 +51,12 @@ async function listCompanies({ limit, page, search }: ListSearchParams) {
 
   const [rows, countResult] = await Promise.all([
     query
-      .select(['companies.domain', 'companies.id', 'companies.imageUrl', 'companies.name'])
+      .select([
+        'companies.domain',
+        'companies.id',
+        'companies.imageUrl',
+        'companies.name',
+      ])
       .select((eb) => {
         return eb
           .selectFrom('resumeBookSponsors')

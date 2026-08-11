@@ -1,5 +1,12 @@
 import dayjs from 'dayjs';
-import { Clipboard, Edit, ExternalLink, Menu, Plus, Trash } from 'react-feather';
+import {
+  Clipboard,
+  Edit,
+  ExternalLink,
+  Menu,
+  Plus,
+  Trash,
+} from 'react-feather';
 import {
   generatePath,
   Link,

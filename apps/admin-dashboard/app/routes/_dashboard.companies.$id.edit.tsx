@@ -8,7 +8,11 @@ import {
   useLoaderData,
 } from 'react-router';
 
-import { getCompany, isApifyConfigured, updateCompany } from '@oyster/core/employment/server';
+import {
+  getCompany,
+  isApifyConfigured,
+  updateCompany,
+} from '@oyster/core/employment/server';
 import { AdminUpdateCompanyInput } from '@oyster/core/employment/types';
 import {
   CompanyDomainField,
@@ -23,7 +27,14 @@ import {
   updateCompanyResumeBookSponsorships,
 } from '@oyster/core/resume-books';
 import { db } from '@oyster/db';
-import { Button, ErrorMessage, getErrors, Modal, Text, validateForm } from '@oyster/ui';
+import {
+  Button,
+  ErrorMessage,
+  getErrors,
+  Modal,
+  Text,
+  validateForm,
+} from '@oyster/ui';
 
 import { Route } from '@/shared/constants';
 import {
@@ -105,6 +116,7 @@ export async function action({ params, request }: ActionFunctionArgs) {
   });
 
   const url = new URL(request.url);
+
   url.pathname = Route['/companies'];
 
   return redirect(url.toString(), {
