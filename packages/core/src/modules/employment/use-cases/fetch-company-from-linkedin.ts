@@ -2,6 +2,7 @@ import { z } from 'zod';
 
 import { withCache } from '@/infrastructure/redis';
 import { runActor } from '@/modules/apify';
+import { parseLinkedInCompanySlug } from '@/modules/employment/employment.utils';
 import { ColorStackError } from '@/shared/errors';
 
 const LinkedInLogo = z.object({
@@ -41,18 +42,6 @@ function getBestLogoUrl(logos: z.infer<typeof LinkedInLogo>[] | undefined) {
   return logos.reduce((best, current) => {
     return (current.width ?? 0) > (best.width ?? 0) ? current : best;
   }).url;
-}
-
-export function parseLinkedInCompanySlug(input: string) {
-  const trimmed = input.trim();
-
-  const match = trimmed.match(/linkedin\.com\/company\/([^/?#]+)/i);
-
-  if (match?.[1]) {
-    return match[1];
-  }
-
-  return trimmed.replace(/^@/, '');
 }
 
 export async function fetchCompanyFromLinkedIn(

@@ -10,7 +10,7 @@ import {
   Student,
 } from '@oyster/types';
 
-import { parseLinkedInCompanySlug } from '@/modules/employment/use-cases/fetch-company-from-linkedin';
+import { parseLinkedInCompanySlug } from '@/modules/employment/employment.utils';
 import { ListSearchParams } from '@/shared/types';
 
 // Enums
