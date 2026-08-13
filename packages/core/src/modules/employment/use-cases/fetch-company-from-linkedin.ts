@@ -2,29 +2,46 @@ import { z } from 'zod';
 
 import { withCache } from '@/infrastructure/redis';
 import { runActor } from '@/modules/apify';
+import { parseLinkedInCompanySlug } from '@/modules/employment/employment.utils';
 import { ColorStackError } from '@/shared/errors';
 
-const LinkedInCompany = z.object({
+const LinkedInLogo = z.object({
+  height: z.number().optional(),
+  url: z.string().url(),
+  width: z.number().optional(),
+});
+
+const LinkedInCompanyResponse = z.object({
   description: z.string().nullish(),
   id: z.string(),
   logo: z.string().url().optional(),
+  logos: LinkedInLogo.array().optional(),
   name: z.string(),
   universalName: z.string(),
   website: z.string().url().nullish(),
 });
 
+const LinkedInCompany = LinkedInCompanyResponse.transform((company) => {
+  return {
+    description: company.description,
+    id: company.id,
+    logo: company.logo ?? getBestLogoUrl(company.logos),
+    name: company.name,
+    universalName: company.universalName,
+    website: company.website,
+  };
+});
+
 export type LinkedInCompany = z.infer<typeof LinkedInCompany>;
 
-export function parseLinkedInCompanySlug(input: string) {
-  const trimmed = input.trim();
-
-  const match = trimmed.match(/linkedin\.com\/company\/([^/?#]+)/i);
-
-  if (match?.[1]) {
-    return match[1];
+function getBestLogoUrl(logos: z.infer<typeof LinkedInLogo>[] | undefined) {
+  if (!logos?.length) {
+    return undefined;
   }
 
-  return trimmed.replace(/^@/, '');
+  return logos.reduce((best, current) => {
+    return (current.width ?? 0) > (best.width ?? 0) ? current : best;
+  }).url;
 }
 
 export async function fetchCompanyFromLinkedIn(
